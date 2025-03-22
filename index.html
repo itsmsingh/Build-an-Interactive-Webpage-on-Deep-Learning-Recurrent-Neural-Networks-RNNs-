@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Learning: RNNs and LSTMs</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Deep Learning: RNNs and LSTMs</h1>
+    <p>Explore the Power of Sequential Data Processing in AI</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#visualizations">Visualizations</a></li>
+      <li><a href="#applications">Applications</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <section id="introduction">
+    <h2>Introduction to RNNs and LSTMs</h2>
+    <h3>What Are Recurrent Neural Networks (RNNs)?</h3>
+    <p>
+      A Recurrent Neural Network (RNN) is a type of artificial neural network designed for sequential data processing. Unlike traditional feedforward networks, RNNs have loops that allow information to persist, making them suitable for tasks where past data influences future predictions.
+    </p>
+    <h4>Key Characteristics of RNNs:</h4>
+    <ul>
+      <li>Sequential Processing: RNNs process data step-by-step, maintaining an internal memory of previous inputs.</li>
+      <li>Hidden State: The network maintains a hidden state that carries information from previous time steps.</li>
+      <li>Weight Sharing: The same weights are applied across all time steps, making RNNs efficient for sequential tasks.</li>
+      <li>Challenges: RNNs suffer from vanishing gradients, making it difficult to learn long-term dependencies.</li>
+    </ul>
+
+    <h3>What Are Long Short-Term Memory (LSTM) Networks?</h3>
+    <p>
+      An LSTM is a special type of RNN designed to address the vanishing gradient problem. It introduces a memory cell and gated mechanisms that allow the network to retain long-term dependencies more effectively.
+    </p>
+    <h4>Key Features of LSTMs:</h4>
+    <ul>
+      <li>Cell State: A separate memory unit that can store long-term information.</li>
+      <li>Gated Mechanism: Uses three gates to regulate information flow:
+        <ul>
+          <li>Forget Gate: Decides what information to discard.</li>
+          <li>Input Gate: Determines what new information to store.</li>
+          <li>Output Gate: Controls what information is passed to the next state.</li>
+        </ul>
+      </li>
+      <li>Better Long-Term Memory: Unlike standard RNNs, LSTMs can effectively retain information over extended sequences.</li>
+    </ul>
+  </section>
+
+  <section id="visualizations">
+    <h2>Interactive Visualizations</h2>
+    
+    <!-- RNN Sequence Processing -->
+    <div class="visualization">
+      <h3>RNN Sequence Processing</h3>
+      <p>Adjust the input sequence and see how the hidden state evolves over time.</p>
+      <input type="text" id="rnn-input" placeholder="Enter a sequence (e.g., 1,2,3)">
+      <button onclick="updateRNN()">Update</button>
+      <div class="chart-container">
+        <canvas id="rnn-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- LSTM Gates in Action -->
+    <div class="visualization">
+      <h3>LSTM Gates in Action</h3>
+      <p>Adjust the gate values and observe changes in the cell state.</p>
+      <label for="forget-gate">Forget Gate:</label>
+      <input type="range" id="forget-gate" min="0" max="1" step="0.1" value="0.5" oninput="updateLSTM()">
+      <label for="input-gate">Input Gate:</label>
+      <input type="range" id="input-gate" min="0" max="1" step="0.1" value="0.5" oninput="updateLSTM()">
+      <label for="output-gate">Output Gate:</label>
+      <input type="range" id="output-gate" min="0" max="1" step="0.1" value="0.5" oninput="updateLSTM()">
+      <div class="chart-container">
+        <canvas id="lstm-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="applications">
+    <h2>Real-World Applications of RNNs</h2>
+    <ul>
+      <li><strong>Speech Recognition (Siri, Google Assistant, Alexa):</strong> RNNs process and understand spoken language, converting audio into text and generating responses in real-time.</li>
+      <li><strong>Machine Translation (Google Translate, DeepL):</strong> RNNs analyze sentence structures and context for accurate translations.</li>
+      <li><strong>Time-Series Forecasting (Stock Market Predictions, Weather Forecasting):</strong> RNNs analyze historical data patterns to predict future trends.</li>
+    </ul>
+  </section>
+
+  <section id="quiz">
+    <h2>Test Your Knowledge</h2>
+    <div class="quiz-question">
+      <p>1. What is the primary purpose of the forget gate in an LSTM?</p>
+      <input type="radio" name="q1" value="A"> A) To store new information<br>
+      <input type="radio" name="q1" value="B"> B) To discard irrelevant information<br>
+      <input type="radio" name="q1" value="C"> C) To control the output<br>
+      <button onclick="checkAnswer(1)">Submit</button>
+      <p id="q1-feedback"></p>
+    </div>
+
+    <div class="quiz-question">
+      <p>2. Which of the following is a challenge faced by standard RNNs?</p>
+      <input type="radio" name="q2" value="A"> A) Exploding gradients<br>
+      <input type="radio" name="q2" value="B"> B) Vanishing gradients<br>
+      <input type="radio" name="q2" value="C"> C) Overfitting<br>
+      <button onclick="checkAnswer(2)">Submit</button>
+      <p id="q2-feedback"></p>
+    </div>
+
+    <div class="quiz-question">
+      <p>3. Which application uses RNNs for generating human-like responses?</p>
+      <input type="radio" name="q3" value="A"> A) Speech Recognition<br>
+      <input type="radio" name="q3" value="B"> B) Chatbots<br>
+      <input type="radio" name="q3" value="C"> C) Image Captioning<br>
+      <button onclick="checkAnswer(3)">Submit</button>
+      <p id="q3-feedback"></p>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2>Additional Resources</h2>
+    <ul>
+      <li><a href="https://www.coursera.org/specializations/deep-learning" target="_blank">Deep Learning Specialization by Andrew Ng (Coursera)</a></li>
+      <li><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank">Understanding LSTMs by Christopher Olah</a></li>
+      <li><a href="https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html" target="_blank">PyTorch Tutorials on RNNs</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Deep Learning: RNNs and LSTMs</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
